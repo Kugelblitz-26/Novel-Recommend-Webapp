@@ -1,0 +1,57 @@
+<!-- novel.html -->
+<!-- novel.html -->
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="container novel-details">
+    <div class="row">
+        <div class="col-md-3">
+            <img src="{{ img_url }}" class="img-fluid">
+        </div>
+
+        <div class="col-md-9">
+            <h2 class="novel-title">{{ title }}</h2>
+            <p class="novel-authors">{{ authors }}</p>
+            <p class="novel-genres">
+                <span class="badge badge-pill badge-primary">{{ genres }}</span>
+            </p>
+            <p class="novel-showtype">Show Type: {{ showtype }}</p>
+            <p class="novel-tags"><strong>Tags:</strong> {{ tags }}</p>
+            <p class="novel-year"><strong>Year:</strong> {{ year }}</p>
+            <p class="novel-rank"><strong>Rank:</strong> {{ all_time_rank }}</p>
+            <p class="novel-description"><strong>Description:</strong> {{ description }}</p>
+           
+              <div class="novel-chapters">
+                <strong>Chapters:</strong>
+               
+            </div>
+            
+              </ul>
+          </div>
+           </div>
+    </div>
+
+    <hr>
+
+    <div class="recommendations">
+        <h4>Recommendations</h4>
+        <div class="row">
+            {% for recommendations_y in recommendations_y %}
+
+            <div class="col-md-3">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ recommendations.recommendations }}</h5>
+                        <h5 class="card-title"> {{ recommendations_y }}
+                        </h5>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

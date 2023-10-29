@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ novel.title }}</title>
+</head>
+<body>
+    <h1>{{ novel.title }}</h1>
+    <h1>Novel ID: {{ novel.title }}</h1>
+
+    <img src="{{ novel.img_url }}" alt="{{ novel.title }}">
+    <p><strong>Description:</strong> {{ novel.description }}</p>
+    <p><strong>Genres:</strong> {{ novel.genres }}</p>
+    <p><strong>Tags:</strong> {{ novel.tags }}</p>
+    <p><strong>Author:</strong> {{ novel.authors }}</p>
+    <h2>Recommendations</h2>
+    <ul>
+        {% for recommendation in recommendations %}
+        <li>
+            {% for novel in novels %}
+            {% if novel.title == recommendation %}
+            <a href="{{ url_for('novel_details', novel_id=novel.novel_id) }}">{{ novel.title }}
+                <img src="{{ novel.img_url }}" alt="{{ novel.title }}">
+            </a>
+            {% endif %}
+            {% endfor %}
+        </li>
+        {% endfor %}
+    </ul>
+</body>
+</html>

@@ -1,0 +1,82 @@
+<!-- home.html -->
+
+{% extends 'layout.html' %}
+
+{% block content %}
+
+<div class="jumbotron jumbotron-fluid">
+  <div class="container">
+    <h1 class="display-4">Novel Recommender</h1>
+    <p class="lead">Discover your next favorite novel!</p>
+  </div>
+</div>
+
+<div class="container">
+
+  <div class="row">
+    <div class="col-md-8">
+    
+      <form>
+        <div class="form-group">
+          <input type="text" class="form-control" name="search_query" placeholder="Search novels...">
+        </div>
+        <button type="submit" class="btn btn-primary">Search</button>
+      </form>
+
+    </div>
+
+    <div class="col-md-4">
+
+        <div class="dropdown">
+            <button class="btn btn-secondary dropdown-toggle" type="button" data-toggle="dropdown">
+              Sort By
+            </button>
+            <div class="dropdown-menu">
+              <a class="dropdown-item" href="?sort_by=title">Title</a>
+              <a class="dropdown-item" href="?sort_by=rank">Rank</a>
+              <a class="dropdown-item" href="?sort_by=rating">Rating</a>
+            </div>
+          </div>
+          
+
+    </div>
+
+
+  </div>
+
+  <hr>
+
+  <div class="row">
+
+    {% for novel in novels %}
+    
+    <div class="col-md-3">
+      <div class="card mb-3">
+        <img src="{{ novel.img_url }}" class="card-img-top">
+        <div class="card-body">
+          <h5 class="card-title">{{ novel.title }}</h5>
+          <p class="card-text text-muted">{{ novel.authors }}</p>
+          <a href="/novel/{{ novel.novel_id }}" class="btn btn-primary">See Details</a>
+        </div>
+      </div>
+    </div>
+        <!-- Add this button at the bottom of your 'home.html' template -->
+
+    {% endfor %}
+
+  </div>
+    <div class="text-center">
+      {% if page > 1 %}
+        <a href="{{ url_for('home', page=page-1) }}" class="btn btn-primary">Last Page</a>
+      {% endif %}
+      {% if page < total_pages %}
+        <a href="{{ url_for('home', page=page+1) }}" class="btn btn-primary">Next Page</a>
+      {% endif %}
+    </div>
+    
+</div>
+
+</div>
+
+
+{% endblock %}
